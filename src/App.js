@@ -25,21 +25,21 @@ export default {
     },
     methods: {
         initSocket() {
-            console.log('Initializing Socket.IO connection...');
+            console.log('Inicialitzant connexió Socket.IO...');
             this.socket = io('http://localhost:3000');
 
             this.socket.on('connect', () => {
-                console.log('Socket.IO connected:', this.socket.id);
+                console.log('Socket.IO connectat:', this.socket.id);
             });
 
             this.socket.on('joined_room', (data) => {
-                console.log('Received joined_room event:', data);
+                console.log('Rebut event joined_room:', data);
                 this.userData = {
                     name: data.userName,
                     color: data.color,
                     room: data.room
                 };
-                console.log('Switching to canvas view...');
+                console.log('Canviant a vista de Canvas...');
                 this.currentView = 'canvas-view';
             });
 
@@ -72,12 +72,12 @@ export default {
             });
         },
         handleJoin(data) {
-            console.log('handleJoin called with data:', data);
+            console.log('handleJoin cridat amb dades:', data);
             if (this.socket) {
-                console.log('Emitting registerUser event...');
+                console.log('Emetent event registerUser...');
                 this.socket.emit('registerUser', data);
             } else {
-                console.error('Socket is not initialized!');
+                console.error('Socket no està inicialitzat!');
             }
         },
         handleRefreshRooms() {

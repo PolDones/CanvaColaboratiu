@@ -3,14 +3,14 @@ export default {
     <div class="canvas-container">
       <div class="canvas-header">
         <div class="room-info-header">
-          <div class="room-badge">📍 Room: {{ currentRoom }}</div>
+          <div class="room-badge">📍 Sala: {{ currentRoom }}</div>
           <div class="user-info">
             <span class="color-preview" :style="{ backgroundColor: userColor }"></span>
             <span>{{ userName }}</span>
           </div>
         </div>
         <button class="btn-change-room" @click="changeRoom">
-          Change Room
+          Canviar de sala
         </button>
       </div>
       
@@ -24,7 +24,7 @@ export default {
         ></canvas>
 
         <div class="users-sidebar">
-          <h3>👥 Users ({{ roomUsers.length }})</h3>
+          <h3>👥 Usuaris ({{ roomUsers.length }})</h3>
           <div v-for="user in roomUsers" :key="user.id" class="user-item">
             <div 
               class="user-color-indicator" 

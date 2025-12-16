@@ -35,7 +35,7 @@ app.use(express.static(__dirname));
 
 // Socket.IO connection handling
 io.on('connection', (socket) => {
-  console.log('New connection:', socket.id);
+  console.log('Nova connexió:', socket.id);
 
   // Handle user registration
   socket.on('registerUser', async (data) => {
@@ -46,7 +46,7 @@ io.on('connection', (socket) => {
 
     if (roomSockets.length >= MAX_USERS_PER_ROOM) {
       socket.emit('room_full', {
-        message: `Room "${room}" is full (max ${MAX_USERS_PER_ROOM} users)`
+        message: `La sala "${room}" està plena (màxim ${MAX_USERS_PER_ROOM} usuaris)`
       });
       return;
     }
@@ -59,7 +59,7 @@ io.on('connection', (socket) => {
     // Join the room
     socket.join(room);
 
-    console.log(`User ${name} joined room ${room}`);
+    console.log(`L'usuari ${name} s'ha unit a la sala ${room}`);
 
     // Notify the user of successful join
     socket.emit('joined_room', {
@@ -107,7 +107,7 @@ io.on('connection', (socket) => {
 
     if (roomSockets.length >= MAX_USERS_PER_ROOM) {
       socket.emit('room_full', {
-        message: `Room "${room}" is full (max ${MAX_USERS_PER_ROOM} users)`
+        message: `La sala "${room}" està plena (màxim ${MAX_USERS_PER_ROOM} usuaris)`
       });
       return;
     }
@@ -149,7 +149,7 @@ io.on('connection', (socket) => {
 
   // Handle disconnection
   socket.on('disconnect', async () => {
-    console.log('User disconnected:', socket.id);
+    console.log('Usuari desconnectat:', socket.id);
 
     if (socket.roomName) {
       // Update user list in the room
@@ -188,6 +188,6 @@ io.on('connection', (socket) => {
 
 const PORT = process.env.PORT || 3000;
 httpServer.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-  console.log(`Maximum users per room: ${MAX_USERS_PER_ROOM}`);
+  console.log(`Servidor en funcionament a http://localhost:${PORT}`);
+  console.log(`Màxim d'usuaris per sala: ${MAX_USERS_PER_ROOM}`);
 });
